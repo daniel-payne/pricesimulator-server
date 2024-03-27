@@ -1,0 +1,28 @@
+type Query {
+  markets: [Market]!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Market {
+  symbol: String
+  name: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input LogoutInput {
+  email: String!
+}
+
+type Mutation {
+  login(input: LoginInput!): User!
+  logout(input: LogoutInput!): Boolean
+}
