@@ -35,6 +35,7 @@ const csvToObjectForPrices = (item: any) => {
     high: Number.parseFloat(item['<HIGH>']),
     low: Number.parseFloat(item['<LOW>']),
     close: Number.parseFloat(item['<CLOSE>']),
+    volume: Number.parseFloat(item['<VOL>']),
   } as any
 
   return data
@@ -74,13 +75,12 @@ export default async function openPrices(symbol: string): Promise<Prices> {
     .filter((item: any) => item?.open)
     .filter((item) => item.date >= FIRST_PRICE)
 
-  // console.log('openPrices', symbol, prices.length, prices[0])
-
   return {
     timestamps: prices.map((item: any) => item.timestamp as number),
     opens: prices.map((item: any) => item.open as number),
     highs: prices.map((item: any) => item.high as number),
     lows: prices.map((item: any) => item.low as number),
     closes: prices.map((item: any) => item.close as number),
+    volumes: prices.map((item: any) => item.volume as number),
   } as Prices
 }

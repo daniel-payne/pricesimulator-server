@@ -4,52 +4,47 @@ import runSQL from './utilities/database'
 export default async function loadScenarios(id?: string) {
   return [
     {
-      id: '1',
+      code: 'one',
       name: 'Buy and sell cows',
       description: `Sell something you don't own and buy something you don't want to keep`,
 
-      symbols: ['LC.F'],
+      displayOrder: 1,
+      isActive: true,
 
-      contractTypeSettings: {
-        options: ['BUY-UNDERLYING', 'SELL-UNDERLYING'],
-      },
-      contractNotionalSettings: {
-        isTradingContracts: true,
-        isReadonly: true,
-        defaultValue: 1,
-      },
+      symbols: 'LC.F',
 
-      canUseStopLoss: false,
-      canUseTakeProfit: false,
-      canCoverTrade: false,
+      settings: 'display=trade-form&trade=contract-single',
     },
 
     {
-      id: '2',
+      code: 'two',
       name: 'Trade in more markets',
       description: `You can trade more than one market, and you don't even need to buy a whole contract`,
 
-      symbols: ['FC.F', 'LC.F', 'LH.F'],
+      displayOrder: 2,
 
-      contractTypeSettings: {
-        options: ['BUY-UNDERLYING', 'SELL-UNDERLYING'],
-      },
-      contractNotionalSettings: {
-        isTradingContracts: true,
-        isReadonly: false,
-        defaultValue: 1,
-      },
-
-      canUseStopLoss: false,
-      canUseTakeProfit: false,
-      canCoverTrade: false,
+      symbols: 'LH.F,OJ.F,S.F,KW.F',
+      settings: 'display=trade-form&trade=contract-multi',
     },
 
     {
-      id: '3',
+      code: 'two',
+      name: 'Trade in more markets',
+      description: `You can trade in dollars instead of contracts`,
+
+      displayOrder: 2,
+
+      symbols: 'LH.F,OJ.F,S.F,KW.F',
+      settings: 'display=trade-form&trade=dollar-only',
+    },
+
+    {
+      code: 'three',
       name: 'Trade in lots markets',
       description: `Practice trading your contracts in lots of different markets.`,
 
+      displayOrder: 3,
+
       symbols: [
         'FC.F',
         'LC.F',
@@ -73,47 +68,29 @@ export default async function loadScenarios(id?: string) {
         'SGDUSD',
         'TRYUSD',
         'ZARUSD',
-      ],
+      ].join(','),
 
-      contractTypeSettings: {
-        options: ['BUY-UNDERLYING', 'SELL-UNDERLYING'],
-      },
-      contractNotionalSettings: {
-        isTradingContracts: true,
-        isReadonly: false,
-        defaultValue: 1,
-      },
-
-      canUseStopLoss: false,
-      canUseTakeProfit: false,
-      canCoverTrade: false,
+      settings: 'display=trade-action&trade=stop-take',
     },
 
     {
-      id: '4',
+      code: 'four',
       name: 'Fire and Forget',
       description: `Set limits and let you trade run until it's made or lost money`,
 
-      symbols: ['KC.F'],
+      displayOrder: 4,
 
-      contractTypeSettings: {
-        options: ['BUY-UNDERLYING', 'SELL-UNDERLYING'],
-      },
-      contractNotionalSettings: {
-        isTradingContracts: false,
-        isReadonly: false,
-        defaultValue: 1000,
-      },
+      symbols: 'KC.F',
 
-      canUseStopLoss: true,
-      canUseTakeProfit: true,
-      canCoverTrade: false,
+      settings: 'display=trade-action&trade=stop-take',
     },
 
     {
-      id: '5',
+      code: 'five',
       name: 'Spread your wings',
       description: `Now you have the hang of it, lets add in currencies and metals`,
+
+      displayOrder: 5,
 
       symbols: [
         'FC.F',
@@ -138,37 +115,9 @@ export default async function loadScenarios(id?: string) {
         'SGDUSD',
         'TRYUSD',
         'ZARUSD',
-      ],
+      ].join(','),
 
-      contractTypeSettings: {
-        options: ['BUY-UNDERLYING', 'SELL-UNDERLYING'],
-      },
-      contractNotionalSettings: {
-        isTradingContracts: false,
-        isReadonly: false,
-        defaultValue: 1000,
-      },
-
-      canUseStopLoss: true,
-      canUseTakeProfit: true,
-      canCoverTrade: false,
-    },
-
-    {
-      id: '9',
-      name: 'All strategies available',
-      description: `everything is available`,
-
-      canCallUnderlying: true,
-      canPutUnderlying: true,
-      canSellOptions: true,
-      canBuyOptions: true,
-
-      isTradingContracts: false,
-
-      canUseStopLoss: true,
-      canUseTakeProfit: true,
-      canCoverTrade: true,
+      settings: '',
     },
   ]
 }

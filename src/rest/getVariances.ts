@@ -4,7 +4,7 @@ import findVariances from '../data/findVariances'
 
 import type { Variances } from '../types/Variances'
 
-const ONE_HOUR = 60 * 60 * 1000
+//const ONE_HOUR = 60 * 60 * 1000
 
 export default async function getVariances(req: Request, res: Response, next: NextFunction) {
   const symbol = req.params.SYMBOL
@@ -15,7 +15,7 @@ export default async function getVariances(req: Request, res: Response, next: Ne
 
   //console.log('getPricesBySymbol', symbol, field, date, result?.timestamps?.length)
 
-  res.set(`Cache-Control', 'public, max-age=${ONE_HOUR}`)
+  //res.set(`Cache-Control', 'public, max-age=${ONE_HOUR}`)
 
   res.send(result)
 }

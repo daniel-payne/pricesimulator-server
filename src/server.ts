@@ -1,6 +1,8 @@
 import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
+import apicache from 'apicache'
+
 import express from 'express'
 import http from 'http'
 import cors from 'cors'
@@ -28,6 +30,8 @@ const CORS_OPTIONS = {
 async function startup() {
   const app = express()
 
+  let cache = apicache.middleware
+
   const httpServer = http.createServer(app)
 
   const apolloServer = new ApolloServer<MyContext>({
@@ -39,6 +43,8 @@ async function startup() {
   await apolloServer.start()
 
   app.use(cors<cors.CorsRequest>(CORS_OPTIONS))
+
+  app.use(cache('1 day'))
 
   routes(app)
 

@@ -4,7 +4,7 @@ import openPrices from '../data/openPrices'
 import type { Prices } from '../types/Prices'
 import findPrices from '../data/findPrices'
 
-const ONE_HOUR = 60 * 60 * 1000
+//const ONE_HOUR = 60 * 60 * 1000
 
 export default async function getPrices(req: Request, res: Response, next: NextFunction) {
   const symbol = req.params.SYMBOL

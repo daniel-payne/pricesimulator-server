@@ -1,4 +1,4 @@
-import { Variances } from '../types/Variances'
+import type { Variances } from '../types/Variances'
 import openPrices from './openPrices'
 import cache from './utilities/cache'
 

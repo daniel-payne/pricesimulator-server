@@ -4,7 +4,7 @@ import findVolatilities from '../data/findVolatilities'
 
 import type { Volatilities } from '../types/Volatilities'
 
-const ONE_HOUR = 60 * 60 * 1000
+//const ONE_HOUR = 60 * 60 * 1000
 
 export default async function getVolatilities(req: Request, res: Response, next: NextFunction) {
   const symbol = req.params.SYMBOL

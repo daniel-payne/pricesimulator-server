@@ -7,18 +7,20 @@ export default async function loadMarkets(symbol?: string) {
       `SELECT 
           M.symbol                             as symbol, 
           M.name                               as name, 
-          REPLACE(LOWER(M.Category), ' ', '')  as category,
+          REPLACE(LOWER(M.category), ' ', '')  as category,
           M.Market                             as market, 
           M.Country                            as country, 
           M.Description                        as description, 
           M.Code                               as code, 
-          M.DollarModifier                     as dollarModifier, 
+          M.PriceModifier                      as priceModifier, 
+          M.PriceSize                          as priceSize, 
+          M.PriceSpread                        as priceSpread,
+          M.PriceDecimals                      as priceDecimals,
           M.ContractSize                       as contractSize, 
           M.ContractUnit                       as contractUnit, 
           M.ContractName                       as contractName, 
-          M.BaseSymbol                         as baseSymbol, 
-          M.DecimalPlaces                      as decimalPlaces 
-       FROM        
+          M.BaseSymbol                         as baseSymbol
+      FROM        
           markets M
        WHERE        
           M.symbol = :SYMBOL
@@ -29,22 +31,24 @@ export default async function loadMarkets(symbol?: string) {
   } else {
     return (await runSQL(
       `SELECT 
-          M.symbol                             as symbol, 
-          M.name                               as name, 
-          REPLACE(LOWER(M.category), ' ', '')  as category,
-          M.Market                             as market, 
-          M.Country                            as country, 
-          M.Description                        as description, 
-          M.Code                               as code, 
-          M.DollarModifier                     as dollarModifier, 
-          M.ContractSize                       as contractSize, 
-          M.ContractUnit                       as contractUnit, 
-          M.ContractName                       as contractName, 
-          M.BaseSymbol                         as baseSymbol, 
-          M.DecimalPlaces                      as decimalPlaces 
-       FROM        
-          markets M
-       WHERE
+        M.symbol                             as symbol, 
+        M.name                               as name, 
+        REPLACE(LOWER(M.category), ' ', '')  as category,
+        M.Market                             as market, 
+        M.Country                            as country, 
+        M.Description                        as description, 
+        M.Code                               as code, 
+        M.PriceModifier                      as priceModifier, 
+        M.PriceSize                          as priceSize, 
+        M.PriceSpread                        as priceSpread,
+        M.PriceDecimals                      as priceDecimals,
+        M.ContractSize                       as contractSize, 
+        M.ContractUnit                       as contractUnit, 
+        M.ContractName                       as contractName, 
+        M.BaseSymbol                         as baseSymbol 
+      FROM        
+        markets M
+      WHERE
           REPLACE(LOWER(M.Category), ' ', '') NOT IN ('equity', 'macroeconomics', 'moneymarket');`,
       [symbol],
     )) as unknown as Markets

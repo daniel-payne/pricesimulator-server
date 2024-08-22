@@ -5,7 +5,7 @@ import type { Prices } from '../types/Prices'
 import findPrices from '../data/findPrices'
 import findQuote from '../data/findOption'
 
-const ONE_HOUR = 60 * 60 * 1000
+//const ONE_HOUR = 60 * 60 * 1000
 
 export default async function getOption(req: Request, res: Response, next: NextFunction) {
   const symbol = req.params.SYMBOL
